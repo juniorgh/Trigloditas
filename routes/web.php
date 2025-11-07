@@ -14,16 +14,20 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/dashboard','App\Http\Controllers\Admin\DashboardController@index')
+    Route::get('/dashboard','App\Http\Controllers\admin\DashboardController@index')
     ->name('admin.dashboard');
 
     //cliente
-    Route::post('/cliente/store','App\Http\Controllers\Admin\ClienteController@store')
+    Route::post('/cliente/store','App\Http\Controllers\admin\ClienteController@store')
     ->name('admin.cliente.store');
 
-    Route::get('/cliente/create','App\Http\Controllers\Admin\ClienteController@create')
+    Route::get('/cliente/create','App\Http\Controllers\admin\ClienteController@create')
     ->name('admin.cliente.create');
 
+    //ajuste 
+    Route::get('/ajuste','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.ajuste.index');
+     Route::get('ajuste/conta','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.conta.index');
+     Route::get('ajuste/logradouro','App\Http\Controllers\admin\ajuste\LogradouroController@index')->name('admin.ajuste.logradouro.index');
 });
 
 require __DIR__.'/auth.php';
