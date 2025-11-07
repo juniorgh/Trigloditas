@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('whatsapp', 20); // obrigatório para contato via WhatsApp
 
             // Foto para perfil / reconhecimento facial
-            $table->string('foto', 255)->nullable()->comment('Caminho da foto no storage, opcional no cadastro inicial');
+            $table->string('foto', 255)->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });
@@ -28,6 +31,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('clientes', function (Blueprint $table)
+        {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
+        
         Schema::dropIfExists('clientes');
     }
 };
