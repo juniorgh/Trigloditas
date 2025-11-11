@@ -23,11 +23,22 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/cliente/create','App\Http\Controllers\admin\ClienteController@create')
     ->name('admin.cliente.create');
-
-    //ajuste 
-    Route::get('/ajuste','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.ajuste.index');
-     Route::get('ajuste/conta','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.conta.index');
-     Route::get('ajuste/logradouro','App\Http\Controllers\admin\ajuste\LogradouroController@index')->name('admin.ajuste.logradouro.index');
 });
+
+Route::prefix('admin/ajuste')->middleware(['auth', 'verified'])->group(function () {
+    //ajuste 
+    Route::get('/','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.ajuste.index');
+     Route::get('/conta','App\Http\Controllers\admin\ajuste\AjusteController@index')->name('admin.ajuste.conta.index');
+     Route::get('/logradouro','App\Http\Controllers\admin\ajuste\LogradouroController@index')->name('admin.ajuste.logradouro.index');    
+});
+
+Route::prefix('admin/ajuste/conta')->middleware(['auth', 'verified'])->group(function () {
+    //contas
+     Route::get('/tipo-conta','App\Http\Controllers\admin\ajuste\TipoContaController@index')->name('admin.ajuste.tipo-conta.index');
+
+     Route::post('/tipo-conta/store','App\Http\Controllers\admin\ajuste\TipoContaController@store')->name('admin.ajuste.tipo-conta.store');
+});
+
+
 
 require __DIR__.'/auth.php';
