@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ajuste;
+namespace App\Http\Controllers\Admin\Ajuste;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

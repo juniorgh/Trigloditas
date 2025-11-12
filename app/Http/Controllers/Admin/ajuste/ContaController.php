@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ajustes;
+namespace App\Http\Controllers\Admin\Ajuste;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Troglodita;
+use Illuminate\Support\Facades\Auth;
 
 class ContaController extends Controller
 {
@@ -12,7 +14,21 @@ class ContaController extends Controller
      */
     public function index()
     {
-        return view('admin.ajustes.conta');
+
+        $troglodita = Troglodita::where('user_id',Auth::user()->id)->first();
+
+        //usuario tem conta troglodita
+        if($troglodita->status == 'validado')
+        {
+
+        }
+
+        if($troglodita->status == 'pendente')
+        {
+            return view('admin.ajuste.conta.troglodita-notificacao');
+        }
+
+        return view('admin.ajuste.conta.index');
     }
 
     /**

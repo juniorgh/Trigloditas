@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin\ajuste;
+namespace App\Http\Controllers\Admin\Ajuste;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,10 +14,16 @@ class TipoContaController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
+        $troglodita = Troglodita::where('user_id',Auth::user()->id)->first();
 
-        return view('admin.ajuste.conta.tipo-conta', [
-            'user_id' => $user_id
+        if($troglodita->status == 'pendente')
+        {
+            return view('admin.ajuste.conta.troglodita-notificacao');
+        }
+
+        return view('admin.ajuste.conta.tipo-conta',
+        [
+            'user_id' => Auth::user()->id
         ]);
     }
 
