@@ -17,13 +17,13 @@ class ContaController extends Controller
 
         $troglodita = Troglodita::where('user_id',Auth::user()->id)->first();
 
-        //usuario tem conta troglodita
-        if($troglodita->status == 'validado')
+        // usuario tem conta troglodita
+        if(isset($troglodita->status) && $troglodita->status == 'validado')
         {
 
         }
 
-        if($troglodita->status == 'pendente')
+        if(isset($troglodita->status) && $troglodita->status == 'pendente')
         {
             return view('admin.ajuste.conta.troglodita-notificacao');
         }

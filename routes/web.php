@@ -41,6 +41,10 @@ Route::prefix('admin/ajuste/conta')->middleware(['auth', 'verified'])->group(fun
      Route::get('/tipo-conta','App\Http\Controllers\Admin\Ajuste\TipoContaController@index')->name('admin.ajuste.tipo-conta.index');
 
      Route::post('/tipo-conta/store','App\Http\Controllers\Admin\Ajuste\TipoContaController@store')->name('admin.ajuste.tipo-conta.store');
+
+     Route::post('/tipo-conta/store','App\Http\Controllers\Admin\Ajuste\TipoContaController@store')->name('admin.ajuste.tipo-conta.store');
+
+     Route::get('/tipo-conta/validador-conta-pro','App\Http\Controllers\Admin\Ajuste\TipoContaController@validarContaPro')->name('admin.ajuste.tipo-conta.validador-conta-pro');
 });
 
 
